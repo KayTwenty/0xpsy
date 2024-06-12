@@ -1,4 +1,4 @@
-# 0xpsy
+# 0xpsy - Ox-Sigh 2D Platformer Game
 "Ox-Sigh" an 2D platformer game built in PyGame.
 
 > [!CAUTION]
