@@ -1,11 +1,12 @@
 import pygame, sys
 from pygame.math import Vector2 as vector
 
+# TODO: Adjust the window size to fit your screen
 WINDOW_WIDTH, WINDOW_HEIGHT = 1280, 720
 TILE_SIZE = 64
 ANIMATION_SPEED = 6
 
-# Layers
+# Layers for the tilemap
 Z_LAYERS = {
     'bg': 0,
     'clouds': 1,

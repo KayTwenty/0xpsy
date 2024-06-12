@@ -12,6 +12,7 @@ class Level:
         self.setup(tmx_map)
 
     def setup(self, tmx_map):
+        # For each tile in the terrain layer, create a sprite at the correct position
         for x, y, surf in  tmx_map.get_layer_by_name('Terrain').tiles():
             Sprite((x * TILE_SIZE, y * TILE_SIZE), surf, self.all_sprites)
 

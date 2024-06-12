@@ -1,8 +1,8 @@
 # 0xpsy
-"Ox-Sigh" an 2D platformer game built in PyGame
+"Ox-Sigh" an 2D platformer game built in PyGame.
 
 > [!CAUTION]
-> This project is still in development and is not ready for production use.
+> This project is still in development and is not ready for stable use.
 
 ## Installation
 

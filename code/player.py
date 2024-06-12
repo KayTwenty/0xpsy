@@ -3,6 +3,8 @@ from settings import *
 class Player(pygame.sprite.Sprite):
     def __init__(self, pos, groups):
         super().__init__(groups)
+
+        # Player sprite
         self.image = pygame.Surface((48, 56))
         self.image.fill('blue')
         self.rect = self.image.get_frect(topleft = pos)
@@ -15,6 +17,8 @@ class Player(pygame.sprite.Sprite):
         keys = pygame.key.get_pressed()
         input_vector = vector(0, 0)
 
+        # Basic check for movement keys being pressed
+        # TODO: Swap if statements for switch statements
         if keys[pygame.K_RIGHT]:
             input_vector.x = 1
         if keys[pygame.K_LEFT]:
