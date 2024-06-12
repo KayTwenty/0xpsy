@@ -1,5 +1,7 @@
 from settings import *
 from level import Level
+from pytmx.util_pygame import load_pygame
+from os.path import join
 
 class Game:
     def __init__(self):
@@ -11,8 +13,11 @@ class Game:
         # Set the window title
         pygame.display.set_caption('0xide')
 
+        # Load the tilemap
+        self.tmx_maps = {0: load_pygame(join('.', 'data', 'levels', 'omni.tmx'))}
+
         # Create the level (For Testing Purposes)
-        self.current_stage = Level()
+        self.current_stage = Level(self.tmx_maps[0])
 
     def run(self):
         while True:
