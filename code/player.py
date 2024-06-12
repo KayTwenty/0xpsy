@@ -9,7 +9,7 @@ class Player(pygame.sprite.Sprite):
 
         # Player movement
         self.direction = vector()
-        self.speed = 0.1
+        self.speed = 200
 
     def input(self):
         keys = pygame.key.get_pressed()
@@ -25,9 +25,9 @@ class Player(pygame.sprite.Sprite):
         # This is because the vector is a combination of two vectors with a length of 1
         self.direction = input_vector.normalize() if input_vector else input_vector
 
-    def move(self):
-        self.rect.topleft += self.direction * self.speed
+    def move(self, dt):
+        self.rect.topleft += self.direction * self.speed * dt
 
-    def update(self):
+    def update(self, dt):
         self.input()
-        self.move()
+        self.move(dt)
