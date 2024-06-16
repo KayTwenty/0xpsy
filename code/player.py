@@ -15,6 +15,7 @@ class Player(pygame.sprite.Sprite):
         # Player movement
         self.direction = vector()
         self.speed = 200
+        self.gravity = 1300
 
         # Collission detection
         self.collision_sprites = collision_sprites
@@ -34,12 +35,17 @@ class Player(pygame.sprite.Sprite):
         # We are normalizing the vector to prevent the player from moving faster diagonally
         # This is caused by the vector having a length of 1.4 instead of 1
         # This is because the vector is a combination of two vectors with a length of 1
-        self.direction = input_vector.normalize() if input_vector else input_vector
+        self.direction.x = input_vector.normalize().x if input_vector else input_vector.x
 
     def move(self, dt):
+        # Horizontal movement
         self.rect.x += self.direction.x * self.speed * dt
         self.collision('horizontal')
-        self.rect.y += self.direction.y * self.speed * dt
+
+        # Vertical movement
+        self.direction.y += self.gravity / 2 * dt
+        self.rect.y += self.direction.y * dt
+        self.direction.y += self.gravity / 2 * dt
         self.collision('vertical')
 
     def collision(self, axis):
@@ -54,7 +60,16 @@ class Player(pygame.sprite.Sprite):
                     if self.rect.right >= sprite.rect.left and self.old_rect.right <= sprite.old_rect.left:
                         self.rect.right = sprite.rect.left
                 else:
-                    pass
+                    # Top position
+                    if self.rect.top <= sprite.rect.bottom and self.old_rect.top >= sprite.old_rect.bottom:
+                        self.rect.top = sprite.rect.bottom
+
+                    # Bottom position
+                    if self.rect.bottom >= sprite.rect.top and self.old_rect.bottom <= sprite.old_rect.top:
+                        self.rect.bottom = sprite.rect.top
+                    
+                    # Reset gravity
+                    self.direction.y = 0
 
     def update(self, dt):
         self.old_rect = self.rect.copy()
