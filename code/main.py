@@ -15,7 +15,7 @@ class Game:
         self.clock = pygame.time.Clock()
 
         # Load the tilemap
-        self.tmx_maps = {0: load_pygame(join('.', 'data', 'levels', 'omni.tmx'))}
+        self.tmx_maps = {0: load_pygame(join('..', 'data', 'levels', 'omni.tmx'))}
 
         # Create the level (For Testing Purposes)
         self.current_stage = Level(self.tmx_maps[0])
