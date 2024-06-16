@@ -27,9 +27,9 @@ class Player(pygame.sprite.Sprite):
 
         # Basic check for movement keys being pressed
         # TODO: Swap if statements for switch statements
-        if keys[pygame.K_RIGHT]:
+        if keys[pygame.K_RIGHT] or keys[pygame.K_d]:
             input_vector.x = 1
-        if keys[pygame.K_LEFT]:
+        if keys[pygame.K_LEFT] or keys[pygame.K_a]:
             input_vector.x = -1
 
         # We are normalizing the vector to prevent the player from moving faster diagonally
