@@ -15,7 +15,12 @@ class Game:
         self.clock = pygame.time.Clock()
 
         # Load the tilemap
-        self.tmx_maps = {0: load_pygame(join('..', 'data', 'levels', 'omni.tmx'))}
+        try:
+            # Attempt to load the tilemap
+            self.tmx_maps = {0: load_pygame(join('..', 'data', 'levels', 'omni.tmx'))}
+        except FileNotFoundError:
+            print("Could not find the tilemap in the parent directory. Attempting to load from the current directory.")
+            self.tmx_maps = {0: load_pygame(join('.', 'data', 'levels', 'omni.tmx'))}
 
         # Create the level (For Testing Purposes)
         self.current_stage = Level(self.tmx_maps[0])
