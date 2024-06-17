@@ -16,6 +16,8 @@ class Player(pygame.sprite.Sprite):
         self.direction = vector()
         self.speed = 200
         self.gravity = 1300
+        self.jump = False
+        self.jump_height = 900
 
         # Collission detection
         self.collision_sprites = collision_sprites
@@ -32,6 +34,9 @@ class Player(pygame.sprite.Sprite):
         if keys[pygame.K_LEFT] or keys[pygame.K_a]:
             input_vector.x = -1
 
+        if keys[pygame.K_SPACE]:
+            self.jump = True
+
         # We are normalizing the vector to prevent the player from moving faster diagonally
         # This is caused by the vector having a length of 1.4 instead of 1
         # This is because the vector is a combination of two vectors with a length of 1
@@ -47,6 +52,11 @@ class Player(pygame.sprite.Sprite):
         self.rect.y += self.direction.y * dt
         self.direction.y += self.gravity / 2 * dt
         self.collision('vertical')
+
+        # Jumping
+        if self.jump:
+            self.direction.y = -self.jump_height
+            self.jump = False
 
     def collision(self, axis):
         for sprite in self.collision_sprites:
