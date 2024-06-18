@@ -56,8 +56,9 @@ class Player(pygame.sprite.Sprite):
 
         # Jumping
         if self.jump:
-            self.direction.y = -self.jump_height
-            self.jump = False
+            if self.on_surface['floor']:
+                self.direction.y = -self.jump_height
+                self.jump = False
 
     def collision(self, axis):
         for sprite in self.collision_sprites:
