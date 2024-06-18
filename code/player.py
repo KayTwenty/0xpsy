@@ -21,6 +21,7 @@ class Player(pygame.sprite.Sprite):
 
         # Collission detection
         self.collision_sprites = collision_sprites
+        self.on_surface = {'floor': False, 'left': False, 'right': False}
         
 
     def input(self):
